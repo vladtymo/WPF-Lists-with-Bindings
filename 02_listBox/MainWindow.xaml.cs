@@ -44,7 +44,7 @@ namespace _02_listBox
             // прив'язка колекціх до ListBox
             list.ItemsSource = group;
             // встановлення властивості елемента для відображення    
-            list.DisplayMemberPath = nameof(Student.FullName);
+            list.DisplayMemberPath = nameof(Student.FullInfo);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -75,35 +75,35 @@ namespace _02_listBox
     class Student : INotifyPropertyChanged
     {
         private string name;
-        public string Name 
-        { 
-            get { return name; }
-            set 
+        public string Name
+        {
+            get => name;
+            set
             {
                 name = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(FullName));
-            } 
+                OnPropertyChanged(nameof(FullInfo));
+            }
         }
-
         private int age;
         public int Age
         {
-            get { return age; }
+            get => age;
             set
             {
                 age = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(FullName));
+                OnPropertyChanged(nameof(FullInfo));
             }
         }
-        public string FullName => Name + " : " + Age;
+        
+        public string FullInfo => Name + " : " + Age;
 
         // Create the OnPropertyChanged method to raise the event
         // The calling member's name will be used as the parameter.
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -111,6 +111,5 @@ namespace _02_listBox
         {
             return $"{Name} : {Age}";
         }
-
     }
 }

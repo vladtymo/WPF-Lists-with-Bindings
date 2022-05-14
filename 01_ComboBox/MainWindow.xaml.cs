@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace _01_ComboBox
     {
         // INotifyCollectionChanged
         ObservableCollection<Person> people = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -48,8 +50,8 @@ namespace _01_ComboBox
             // nameof - get object name as string value 
             //comboBox.DisplayMemberPath = nameof(Person.Name);   // show specific property
             //comboBox.DisplayMemberPath = nameof(Person.FullName);
-            //comboBox.DisplayMemberPath = $"{nameof(Person.Birth)}.{nameof(Person.Birth.Year)}";
-            //comboBox.DisplayMemberPath = null;
+            comboBox.DisplayMemberPath = $"{nameof(Person.Birth)}.{nameof(Person.Birth.Year)}";
+            comboBox.DisplayMemberPath = null;
         }
 
         private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -63,8 +65,8 @@ namespace _01_ComboBox
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var newPerson = new Person() { Name = "New Name", Surname = "New Surname", Birth = new System.DateTime(1990, 1, 1) };
-            //comboBox.Items.Add(newPerson);
             people.Add(newPerson);
+            //comboBox.Items.Add(newPerson); error
         }
     }
 }

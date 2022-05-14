@@ -27,9 +27,9 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>-->
             
-            <!--<ListBoxItem>Red</ListBoxItem>
+            <ListBoxItem>Red</ListBoxItem>
             <ListBoxItem IsSelected="True">Green</ListBoxItem>
-            <ListBoxItem IsSelected="True">Blue</ListBoxItem>-->
+            <ListBoxItem IsSelected="True">Blue</ListBoxItem>
 
         </ListBox>
     </DockPanel>
