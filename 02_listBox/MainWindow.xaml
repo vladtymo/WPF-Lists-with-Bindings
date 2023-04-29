@@ -11,7 +11,7 @@
             <Button DockPanel.Dock="Top" Click="Button_Click_1" Width="100">Remove</Button>
             <Button DockPanel.Dock="Top" Click="Button_Click_2" Width="100">Change</Button>
         </StackPanel>
-        <ListBox SelectionMode="Extended"  Name="list" HorizontalContentAlignment="Stretch">
+        <ListBox SelectionMode="Extended" Name="list" HorizontalContentAlignment="Stretch">
             <!--<ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel LastChildFill="True">

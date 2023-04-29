@@ -24,7 +24,7 @@ namespace _02_listBox
     public partial class MainWindow : Window
     {
         // INotifyCollectionChanged -> CollectionChanged
-        ObservableCollection<Student> group = new ObservableCollection<Student>();
+        ObservableCollection<Student> group = null;
         public MainWindow()
         {
             InitializeComponent();
@@ -65,46 +65,44 @@ namespace _02_listBox
             if (list.SelectedItem != null)
             {
                 Student p = list.SelectedItem as Student;
-                p.Name = "New Name";
+
+                // Notify about Property Changed
+                p.Name += "!";
                 p.Age++;
             }
         }
     }
 
-   
     class Student : INotifyPropertyChanged
     {
         private string name;
+        private int age;
+
         public string Name
         {
             get => name;
             set
             {
-                name = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(FullInfo));
+                this.name = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("FullInfo"));
             }
         }
-        private int age;
         public int Age
         {
             get => age;
             set
             {
-                age = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(FullInfo));
+                this.age = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Age"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("FullInfo"));
             }
         }
-        
-        public string FullInfo => Name + " : " + Age;
+
+        public string FullInfo => Name + " : " + Age; // getter
 
         // Create the OnPropertyChanged method to raise the event
         // The calling member's name will be used as the parameter.
-        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public override string ToString()
