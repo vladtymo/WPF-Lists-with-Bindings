@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace _01_ComboBox
 {
@@ -44,17 +32,18 @@ namespace _01_ComboBox
             //    comboBox.Items.Add(p);
             //}
 
+            // ---------------------- Collection Binding ----------------------
             // binding collection to list items
             comboBox.ItemsSource = people;                      // show ToString() by default
 
             // nameof - get object name as string value 
-            //comboBox.DisplayMemberPath = nameof(Person.Name);   // show specific property
+            comboBox.DisplayMemberPath = nameof(Person.Surname);   // show specific property
             //comboBox.DisplayMemberPath = nameof(Person.FullName);
-            comboBox.DisplayMemberPath = $"{nameof(Person.Birth)}.{nameof(Person.Birth.Year)}";
+            //comboBox.DisplayMemberPath = $"{nameof(Person.Birth)}.{nameof(Person.Birth.Year)}";
             comboBox.DisplayMemberPath = null;
         }
 
-        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void ComboBoxSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (comboBox.SelectedIndex != -1)
             {
@@ -62,11 +51,19 @@ namespace _01_ComboBox
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AddBtnClicked(object sender, RoutedEventArgs e)
         {
             var newPerson = new Person() { Name = "New Name", Surname = "New Surname", Birth = new System.DateTime(1990, 1, 1) };
-            people.Add(newPerson);
             //comboBox.Items.Add(newPerson); error
+            
+            // notify about changes
+            people.Add(newPerson);
+        }
+
+        private void RemoveBtnClicked(object sender, RoutedEventArgs e)
+        {
+            if (comboBox.SelectedItem != null)
+                people.Remove((Person)comboBox.SelectedItem);
         }
     }
 }

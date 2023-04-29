@@ -15,7 +15,7 @@ namespace _01_ComboBox
 
         public override string ToString()
         {
-            return $"{Name} {Surname} - {Birth.ToLongDateString()}";
+            return $"Person: {Name} {Surname}";
         }
     }
 }

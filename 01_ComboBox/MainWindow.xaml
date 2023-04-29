@@ -10,12 +10,14 @@
         Width="300"
         WindowStartupLocation="CenterScreen">
     <StackPanel Margin="10">
-        <Button Click="Button_Click" Width="200" Margin="10">Add New Person</Button>
-        <ComboBox SelectionChanged="ComboBox_SelectionChanged" Name="comboBox" Height="23" Width="200" 
-                  IsEditable="True" IsReadOnly="True">
-            <ComboBoxItem Background="#FFEF8C8C">Red</ComboBoxItem>
+        <Button Click="AddBtnClicked" Width="200" Margin="5">Add New Person</Button>
+        <Button Click="RemoveBtnClicked" Width="200" Margin="5">Remove Selected Person</Button>
+        <ComboBox SelectionChanged="ComboBoxSelectionChanged" Name="comboBox" Height="23" Width="200" 
+                  IsEditable="True" IsReadOnly="True" HorizontalContentAlignment="Stretch">
+            <!--<ComboBoxItem Background="#FFEF8C8C">Red</ComboBoxItem>
             <ComboBoxItem IsSelected="True">Green</ComboBoxItem>
             <ComboBoxItem>Blue</ComboBoxItem>
+            <ProgressBar IsIndeterminate="True" Height="12"></ProgressBar>-->
         </ComboBox>
     </StackPanel>
 </Window>
