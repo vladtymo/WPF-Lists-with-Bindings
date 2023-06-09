@@ -26,7 +26,7 @@ namespace _02_listBox
 
             list.Items.Clear();
 
-            //group.CollectionChanged += (s, e) => MessageBox.Show("Changed");
+            group.CollectionChanged += (s, e) => MessageBox.Show("Changed");
 
             // прив'язка колекціх до ListBox
             list.ItemsSource = group;
@@ -71,7 +71,7 @@ namespace _02_listBox
             set
             {
                 this.name = value;
-                OnPropertyChanged();
+                OnPropertyChanged(); // Name
                 OnPropertyChanged(nameof(FullInfo));
             }
         }
@@ -81,7 +81,7 @@ namespace _02_listBox
             set
             {
                 this.age = value;
-                OnPropertyChanged();
+                OnPropertyChanged(); // Age
                 OnPropertyChanged(nameof(FullInfo));
             }
         }

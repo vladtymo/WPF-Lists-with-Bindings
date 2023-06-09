@@ -37,15 +37,15 @@ namespace _01_ComboBox
             comboBox.ItemsSource = people;                      // show ToString() by default
 
             // nameof - get object name as string value 
-            comboBox.DisplayMemberPath = nameof(Person.Surname);   // show specific property
-            //comboBox.DisplayMemberPath = nameof(Person.FullName);
+            //comboBox.DisplayMemberPath = nameof(Person.Surname);   // show specific property
+            comboBox.DisplayMemberPath = nameof(Person.FullName);
             //comboBox.DisplayMemberPath = $"{nameof(Person.Birth)}.{nameof(Person.Birth.Year)}";
-            comboBox.DisplayMemberPath = null;
+            //comboBox.DisplayMemberPath = null;
         }
 
         private void ComboBoxSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (comboBox.SelectedIndex != -1)
+            if (comboBox.SelectedItem != null)
             {
                 MessageBox.Show(comboBox.SelectedItem.ToString());
             }
